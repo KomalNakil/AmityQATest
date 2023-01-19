@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
 import net.bytebuddy.utility.RandomString;
 import utilityOrangeHRM.utilityClassOHRM;
 
@@ -82,15 +80,33 @@ public class AdminPageOHRM {
 		}
 	}
 	
-	public void VerifyVisibilityOfcurrencyRecord(WebDriver driver)
-	{	
-		utilityClassOHRM.explicitWait(driver, currencyRecord, 3000);
-		Assert.assertTrue(currencyRecord.isDisplayed(),"Tc Failed as Record not Displayed.");
-		Assert.assertEquals("Indian Rupee", currency.getText(),"Tc failed as currency value not matched" );
-		Assert.assertEquals("30000.00", min.getText(), "Tc failed as minSalary value not matched");
-		Assert.assertEquals("100000.00", max.getText(),"Tc failed as maxSalary value not matched" );
-				
+	public String getTextFromCurrency(WebDriver driver)
+	{
+		utilityClassOHRM.explicitWait(driver, currency, 3000);
+		String currencyN = currency.getText();
+		return currencyN;
 	}
+	public String getTextFromMinSallary(WebDriver driver)
+	{
+		utilityClassOHRM.explicitWait(driver, min, 3000);
+		String minS = min.getText();
+		return minS;
+	}
+	public String getTextFromMaxSallary(WebDriver driver)
+	{
+		utilityClassOHRM.explicitWait(driver, max, 3000);
+		String maxS = max.getText();
+		return maxS;
+	}
+	
+	public boolean getStatusOfCurrencyRecord(WebDriver driver)
+	{
+		utilityClassOHRM.explicitWait(driver, currencyRecord, 3000);
+		boolean cR = currencyRecord.isDisplayed();
+		return cR;
+	}
+	
+	
 	
 
 	
