@@ -2,6 +2,7 @@ package testOrangeHRM;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -42,12 +43,23 @@ public class TestClass2ORHM extends BaseClassOHRM{
   @Test
   public void VerifyAddPayGrades() throws InterruptedException, IOException
   {
+//	  home.clickOnAdmin(driver);
+//	  utilityClassOHRM.wait(driver, 500);
+//	  admin.addCurrency(driver);
+//	  admin.getTextFromCurrencyBox(driver);
+//	  admin.VerifyVisibilityOfcurrencyRecord(driver);	
+//	  utilityClassOHRM.takeScreenShot(driver, "cRecord");
+	  //-----
 	  home.clickOnAdmin(driver);
 	  utilityClassOHRM.wait(driver, 500);
 	  admin.addCurrency(driver);
 	  admin.getTextFromCurrencyBox(driver);
-	  admin.VerifyVisibilityOfcurrencyRecord(driver);	
+	  Assert.assertTrue(admin.getStatusOfCurrencyRecord(driver),"Tc Failed as Record not Displayed.");
+	  Assert.assertEquals("Indian Rupee", admin.getTextFromCurrency(driver),"Tc failed as currency value not matched" );
+	  Assert.assertEquals("30000.00",admin.getTextFromMinSallary(driver), "Tc failed as minSalary value not matched");
+	  Assert.assertEquals("100000.00", admin.getTextFromMaxSallary(driver),"Tc failed as maxSalary value not matched" );
 	  utilityClassOHRM.takeScreenShot(driver, "cRecord");
+	 
 	 
   }
 
